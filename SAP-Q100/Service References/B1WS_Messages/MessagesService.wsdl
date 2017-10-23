@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="MessagesService" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s1="http://www.sap.com/SBO/DIS" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="MessagesService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.sap.com/SBO/DIS">
+      <s:element name="GetInboxResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" ref="s1:MessageHeaders" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOutboxResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" ref="s1:MessageHeaders" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSentMessagesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" ref="s1:MessageHeaders" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMessageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" ref="s1:Message" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendMessageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" ref="s1:MessageHeader" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MessageHeaders">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="unbounded" name="MessageHeader">
+              <s:complexType>
+                <s:all>
+                  <s:element minOccurs="0" name="Code" type="s:long" />
+                  <s:element minOccurs="0" name="Received">
+                    <s:simpleType>
+                      <s:restriction base="s:string">
+                        <s:enumeration value="tNO" />
+                        <s:enumeration value="tYES" />
+                      </s:restriction>
+                    </s:simpleType>
+                  </s:element>
+                  <s:element minOccurs="0" name="Read">
+                    <s:simpleType>
+                      <s:restriction base="s:string">
+                        <s:enumeration value="tNO" />
+                        <s:enumeration value="tYES" />
+                      </s:restriction>
+                    </s:simpleType>
+                  </s:element>
+                  <s:element minOccurs="0" name="ReceivedDate" type="s:date" />
+                  <s:element minOccurs="0" name="ReceivedTime" type="s:time" />
+                  <s:element minOccurs="0" name="SentDate" type="s:date" />
+                  <s:element minOccurs="0" name="SentTime" type="s:time" />
+                </s:all>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MessageHeader">
+        <s:complexType>
+          <s:all>
+            <s:element minOccurs="0" name="Code" type="s:long" />
+            <s:element minOccurs="0" name="Received">
+              <s:simpleType>
+                <s:restriction base="s:string">
+                  <s:enumeration value="tNO" />
+                  <s:enumeration value="tYES" />
+                </s:restriction>
+              </s:simpleType>
+            </s:element>
+            <s:element minOccurs="0" name="Read">
+              <s:simpleType>
+                <s:restriction base="s:string">
+                  <s:enumeration value="tNO" />
+                  <s:enumeration value="tYES" />
+                </s:restriction>
+              </s:simpleType>
+            </s:element>
+            <s:element minOccurs="0" name="ReceivedDate" type="s:date" />
+            <s:element minOccurs="0" name="ReceivedTime" type="s:time" />
+            <s:element minOccurs="0" name="SentDate" type="s:date" />
+            <s:element minOccurs="0" name="SentTime" type="s:time" />
+          </s:all>
+        </s:complexType>
+      </s:element>
+      <s:element name="Message">
+        <s:complexType>
+          <s:all>
+            <s:element minOccurs="0" name="User" type="s:long" />
+            <s:element minOccurs="0" name="Priority">
+              <s:simpleType>
+                <s:restriction base="s:string">
+                  <s:enumeration value="pr_Low" />
+                  <s:enumeration value="pr_Normal" />
+                  <s:enumeration value="pr_High" />
+                </s:restriction>
+              </s:simpleType>
+            </s:element>
+            <s:element minOccurs="0" name="Subject" type="s:string" />
+            <s:element minOccurs="0" name="Text" type="s:string" />
+            <s:element minOccurs="0" name="Attachment" type="s:long" />
+            <s:element minOccurs="0" name="MessageDataColumns">
+              <s:complexType>
+                <s:sequence>
+                  <s:element minOccurs="0" maxOccurs="unbounded" name="MessageDataColumn">
+                    <s:complexType>
+                      <s:all>
+                        <s:element minOccurs="0" name="ColumnName" type="s:string" />
+                        <s:element minOccurs="0" name="Link">
+                          <s:simpleType>
+                            <s:restriction base="s:string">
+                              <s:enumeration value="tNO" />
+                              <s:enumeration value="tYES" />
+                            </s:restriction>
+                          </s:simpleType>
+                        </s:element>
+                        <s:element minOccurs="0" name="MessageDataLines">
+                          <s:complexType>
+                            <s:sequence>
+                              <s:element minOccurs="0" maxOccurs="unbounded" name="MessageDataLine">
+                                <s:complexType>
+                                  <s:all>
+                                    <s:element minOccurs="0" name="Value" type="s:string" />
+                                    <s:element minOccurs="0" name="Object" type="s:string" />
+                                    <s:element minOccurs="0" name="ObjectKey" type="s:string" />
+                                  </s:all>
+                                </s:complexType>
+                              </s:element>
+                            </s:sequence>
+                          </s:complexType>
+                        </s:element>
+                      </s:all>
+                    </s:complexType>
+                  </s:element>
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" name="RecipientCollection">
+              <s:complexType>
+                <s:sequence>
+                  <s:element minOccurs="0" maxOccurs="unbounded" name="Recipient">
+                    <s:complexType>
+                      <s:all>
+                        <s:element minOccurs="0" name="UserCode" type="s:string" />
+                        <s:element minOccurs="0" name="UserType">
+                          <s:simpleType>
+                            <s:restriction base="s:string">
+                              <s:enumeration value="rt_RandomUser" />
+                              <s:enumeration value="rt_ContactPerson" />
+                              <s:enumeration value="rt_InternalUser" />
+                            </s:restriction>
+                          </s:simpleType>
+                        </s:element>
+                        <s:element minOccurs="0" name="NameTo" type="s:string" />
+                        <s:element minOccurs="0" name="SendEmail">
+                          <s:simpleType>
+                            <s:restriction base="s:string">
+                              <s:enumeration value="tNO" />
+                              <s:enumeration value="tYES" />
+                            </s:restriction>
+                          </s:simpleType>
+                        </s:element>
+                        <s:element minOccurs="0" name="EmailAddress" type="s:string" />
+                        <s:element minOccurs="0" name="SendSMS">
+                          <s:simpleType>
+                            <s:restriction base="s:string">
+                              <s:enumeration value="tNO" />
+                              <s:enumeration value="tYES" />
+                            </s:restriction>
+                          </s:simpleType>
+                        </s:element>
+                        <s:element minOccurs="0" name="CellularNumber" type="s:string" />
+                        <s:element minOccurs="0" name="SendFax">
+                          <s:simpleType>
+                            <s:restriction base="s:string">
+                              <s:enumeration value="tNO" />
+                              <s:enumeration value="tYES" />
+                            </s:restriction>
+                          </s:simpleType>
+                        </s:element>
+                        <s:element minOccurs="0" name="FaxNumber" type="s:string" />
+                        <s:element minOccurs="0" name="SendInternal">
+                          <s:simpleType>
+                            <s:restriction base="s:string">
+                              <s:enumeration value="tNO" />
+                              <s:enumeration value="tYES" />
+                            </s:restriction>
+                          </s:simpleType>
+                        </s:element>
+                      </s:all>
+                    </s:complexType>
+                  </s:element>
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:all>
+        </s:complexType>
+      </s:element>
+      <s:element name="MsgHeader">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SessionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ServiceName">
+              <s:simpleType>
+                <s:restriction base="s:string">
+                  <s:enumeration value="MessagesService" />
+                </s:restriction>
+              </s:simpleType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="MessagesService">
+      <s:import namespace="http://www.sap.com/SBO/DIS" />
+      <s:element name="GetInbox">
+        <s:complexType>
+          <s:sequence />
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOutbox">
+        <s:complexType>
+          <s:sequence />
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSentMessages">
+        <s:complexType>
+          <s:sequence />
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMessage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" ref="s1:MessageHeader" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendMessage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" ref="s1:Message" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetInboxSoapIn">
+    <wsdl:part name="parameters" element="tns:GetInbox" />
+    <wsdl:part name="request_header" element="s1:MsgHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetInboxSoapOut">
+    <wsdl:part name="parameters" element="s1:GetInboxResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetOutboxSoapIn">
+    <wsdl:part name="parameters" element="tns:GetOutbox" />
+    <wsdl:part name="request_header" element="s1:MsgHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetOutboxSoapOut">
+    <wsdl:part name="parameters" element="s1:GetOutboxResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSentMessagesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSentMessages" />
+    <wsdl:part name="request_header" element="s1:MsgHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetSentMessagesSoapOut">
+    <wsdl:part name="parameters" element="s1:GetSentMessagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMessageSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMessage" />
+    <wsdl:part name="request_header" element="s1:MsgHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetMessageSoapOut">
+    <wsdl:part name="parameters" element="s1:GetMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendMessageSoapIn">
+    <wsdl:part name="parameters" element="tns:SendMessage" />
+    <wsdl:part name="request_header" element="s1:MsgHeader" />
+  </wsdl:message>
+  <wsdl:message name="SendMessageSoapOut">
+    <wsdl:part name="parameters" element="s1:SendMessageResponse" />
+  </wsdl:message>
+  <wsdl:portType name="MessagesServiceSoap">
+    <wsdl:operation name="GetInbox">
+      <wsdl:input message="tns:GetInboxSoapIn" />
+      <wsdl:output message="tns:GetInboxSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOutbox">
+      <wsdl:input message="tns:GetOutboxSoapIn" />
+      <wsdl:output message="tns:GetOutboxSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSentMessages">
+      <wsdl:input message="tns:GetSentMessagesSoapIn" />
+      <wsdl:output message="tns:GetSentMessagesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMessage">
+      <wsdl:input message="tns:GetMessageSoapIn" />
+      <wsdl:output message="tns:GetMessageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMessage">
+      <wsdl:input message="tns:SendMessageSoapIn" />
+      <wsdl:output message="tns:SendMessageSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MessagesServiceSoap12" type="tns:MessagesServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetInbox">
+      <soap12:operation soapAction="MessagesService/GetInbox" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" parts="parameters" />
+        <soap12:header message="tns:GetInboxSoapIn" part="request_header" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOutbox">
+      <soap12:operation soapAction="MessagesService/GetOutbox" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" parts="parameters" />
+        <soap12:header message="tns:GetOutboxSoapIn" part="request_header" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSentMessages">
+      <soap12:operation soapAction="MessagesService/GetSentMessages" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" parts="parameters" />
+        <soap12:header message="tns:GetSentMessagesSoapIn" part="request_header" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMessage">
+      <soap12:operation soapAction="MessagesService/GetMessage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" parts="parameters" />
+        <soap12:header message="tns:GetMessageSoapIn" part="request_header" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMessage">
+      <soap12:operation soapAction="MessagesService/SendMessage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" parts="parameters" />
+        <soap12:header message="tns:SendMessageSoapIn" part="request_header" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MessagesService">
+    <wsdl:port name="MessagesServiceSoap12" binding="tns:MessagesServiceSoap12">
+      <soap12:address location="http://10.10.1.8:8018/B1WS/Service.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
